@@ -1,6 +1,0 @@
-ID: 7532
-Name: Donald Trump
-Pick up Location: White House
-Drop Location: Afghanistan
-Vehicle Type: Waiting
------
