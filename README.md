@@ -31,36 +31,53 @@ A console-based **Ride Dispatch and Booking System** built in C++, demonstrating
 ## 🛠️ Built With
 
 - **Language**: C++
-- **Concepts used**: Classes & objects, inheritance, virtual/pure virtual functions, abstract classes, custom linked lists, `std::tuple` and `std::pair`, file I/O (`fstream`)
+- **Concepts used**: Classes & objects, inheritance, virtual/pure virtual functions, abstract classes, custom linked lists, `std::tuple` and `std::pair`, file I/O (`fstream`), header files & include guards
+
+## 📁 Project Structure
+
+The project is modularized into separate header files by responsibility, with `main.cpp` tying everything together:
+
+```
+RideQueue-Management-System/
+├── main.cpp        # Program entry point — menus, control flow, driver/vehicle assignment logic
+├── Vehicle.h        # Vehicle, Bike, Car, Truck classes (billing logic per vehicle type)
+├── Queue.h           # queue node + servingQueue classes (serving list & waiting list management)
+├── Driver.h           # node + Drivers classes (driver registration & lookup)
+├── README.md
+├── LICENSE
+└── .gitignore
+```
+
+Files generated automatically at runtime (ignored by git — see `.gitignore`):
+```
+Serving.txt    # Currently registered/serving customers
+Waiting.txt    # Customers on the waiting list
+Driver.txt     # Registered drivers
+Done.txt       # Completed rides with billing details
+```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-Any C++ compiler (g++, clang++, MSVC).
+A C++ compiler (g++, clang++, or MSVC). On Ubuntu/Debian:
+```bash
+sudo apt update
+sudo apt install build-essential
+```
 
 ### Compile & Run
 ```bash
-g++ Project.cpp -o RideDispatch
+g++ main.cpp -o RideDispatch
 ./RideDispatch
 ```
 
-On first run, the program will look for `Serving.txt`, `Waiting.txt`, and `Driver.txt` in the working directory. If they don't exist yet, they'll be created automatically as you add data.
+`main.cpp` pulls in `Vehicle.h`, `Queue.h`, and `Driver.h` automatically via `#include`, so no separate compilation steps are needed — one command builds the whole project.
 
-## 📁 File Structure
-
-```
-RideDispatch-CPP/
-├── Project.cpp        # Main source file
-├── Serving.txt         # Auto-generated: registered/serving customers
-├── Waiting.txt         # Auto-generated: waiting list
-├── Driver.txt          # Auto-generated: registered drivers
-├── Done.txt             # Auto-generated: completed ride records with billing
-└── README.md
-```
+On first run, the program looks for `Serving.txt`, `Waiting.txt`, and `Driver.txt` in the working directory. If they don't exist yet, they'll be created automatically as you add data.
 
 ## 📌 Notes
 
-This project was built as a hands-on exercise in applying OOP design and data structures (linked lists, queues) to a practical simulation, without relying on any external libraries or frameworks — everything from the queue logic to file parsing is implemented from scratch.
+This project was built as a hands-on exercise in applying OOP design and data structures (linked lists, queues) to a practical simulation, without relying on any external libraries or frameworks — everything from the queue logic to file parsing is implemented from scratch. The codebase was later refactored from a single monolithic file into separate header files to improve readability and maintainability.
 
 ## 👤 Author
 
